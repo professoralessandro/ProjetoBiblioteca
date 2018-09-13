@@ -18,32 +18,40 @@ namespace BibliotecaLivro
             return this.acervo;
         }
         #endregion
+
+        #region CONSTRUTOR
         //CONSTRUTOR
         public Livros()
         {
             this.acervo = new List<Livro>();
         }
+        #endregion
+
+        #region SOBREESCRITAS
+        public override bool Equals(object obj)
+        {
+            Livros p = (Livros)obj;
+            return this.acervo.Equals(p.acervo);
+        }
+        #endregion
 
         #region METODOS
         public void adicionar(Livro livro)
         {
-            this.getAcervo().Add(livro);
+            this.acervo.Add(livro);
         }//adicionarExemplar
-        public String pesquisar(Int32 num)
+        public Livro pesquisar(Int32 num)
         {
-            String vazio = "Este livro nao existe";
-            String result = "";
             foreach (Livro livrinho in getAcervo())
             {
                 //if(ListaCont.MinhaLista.Equals(new Contato(Convert.ToInt32(textId.Text))));
                 if (livrinho.Equals(new Livro(num)))
                 {
-                    vazio = livrinho.dadosLivro();
-                    return result;
+                    return livrinho;
                     break;
                 }
             }
-            return vazio;
+            return new Livro();
         }//adicionarExemplar
         public String pesquisar()
         {
@@ -52,7 +60,7 @@ namespace BibliotecaLivro
 
             foreach (Livro livrinho in getAcervo())
             {
-                result = livrinho.dadosLivro();
+                result = livrinho.dados();
                 return result;
             }
             return vazio;

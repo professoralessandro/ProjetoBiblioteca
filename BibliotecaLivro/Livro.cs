@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BibliotecaLivro
 {
-    class Livro : Exemplar
+    class Livro
     {
         Livros empres = new Livros();
 
@@ -21,38 +21,13 @@ namespace BibliotecaLivro
 
         #endregion
 
-        #region CONSTRUTOR
-
-        //CONSTRUTORES
-        public Livro(Int32 isbn, String titulo, String autor, String editora)
-        {
-            this.isbn = isbn;
-            this.titulo = titulo;
-            this.autor = autor;
-            this.editora = editora;
-        }
-
-        public Livro(Int32 isbn)
-        {
-            this.isbn = isbn;
-        }
-        public Livro()
-        {
-            this.exemplares = new List<Exemplar>();
-        }
-        public string dadosLivro()
-        {
-            return "Isbn : " + this.isbn.ToString() + " - titulo: " + this.titulo + " - autor: " +
-                this.autor + " - editora: " + this.editora;
-        }
-        #endregion
-
         #region PROPRIEDADES
 
         //propriedades
-        public List<Exemplar> getExemplares()
+
+        public List<Exemplar> Exemplares
         {
-            return this.exemplares;
+            get { return this.exemplares; }
         }
 
         public void setIsbn(Int32 isbn)
@@ -93,56 +68,58 @@ namespace BibliotecaLivro
         }
         #endregion
 
-        #region METODOS
-        //METODOS
+        #region CONSTRUTORES
+
+        //CONSTRUTORES
+        public Livro(Int32 isbn, String titulo, String autor, String editora)
+        {
+            this.isbn = isbn;
+            this.titulo = titulo;
+            this.autor = autor;
+            this.editora = editora;
+        }
+
+        public Livro(Int32 isbn)
+        {
+            this.isbn = isbn;
+        }
+        public Livro()
+        {
+            this.exemplares = new List<Exemplar>();
+        }
+        #endregion
+
+        #region SOBRESCRITAS
         public override bool Equals(object obj)
         {
             Livro p = (Livro)obj;
             return this.isbn.Equals(p.isbn);
         }
+        #endregion
+
+        #region METODOS FUNCIONAIS
+        //METODOS
+
+        public string dados()
+        {
+            return "ISBN: " + this.isbn.ToString() + " - titulo: " + this.titulo + " - autor: " +
+                this.autor + " - editora: " + this.editora;
+        }
         public void adicionarExemplar(Exemplar exemplar)
         {
             this.exemplares.Add(exemplar);
         }//adicionarExemplar
-
-        public Int32 qtdeExemplares(Exemplar exemplar)
+        public int qtdeExemplares()
         {
-            Int32 tot = 0;
-            foreach(Exemplar exemp in exemplares)
-            {
-                tot++;
-            }
-            return tot;
-        }
+            return this.exemplares.Count();
+        }//qtdeExemplares()
 
-        public Int32 qtdeDisponiveis()
-        {
-            Emprestimo empres = new Emprestimo();
-
-            Int32 tot = 0;
-            foreach (Exemplar exemp in exemplares)
-            {
-                if(empres.getDtDevolucao() != null)
-                {
-                    tot++;
-                }
-            }
-            return tot;
-        }
-
-        public Int32 qtdeEmprestimos()
-        {
-            Int32 tot = 0;
-            foreach (Emprestimo qtde in getEmprestimos())
-            {
-                    tot++;   
-            }
-            return tot;
-        }//qtdeEmprestimos
+        //A COMPLETAR METODOS
+        /*
+        + qtdeDisponiveis(): int
+        + qtdeEmprestimos(): int
+        + percDisponibilidade(): double
+        */
         #endregion
-        public Double percDisponibilidade()
-        {
-            return 0.00;
-        }//emprestar
     }//CLASS
 }//NAMESPACE

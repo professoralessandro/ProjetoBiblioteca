@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BibliotecaLivro
 {
-    class Exemplar
+    class Exemplar : Livro
     {
         #region ATRIBUTOS
         //Atributos
@@ -14,18 +14,6 @@ namespace BibliotecaLivro
         private List<Emprestimo> emprestimos;
         //LISTA DE EMPRESTIMOS
 
-        #endregion
-
-        #region CONSTRUTORES
-        //CONSTRUTORES
-        public Exemplar(Int32 tombo)
-        {
-            this.tombo = tombo;
-        }
-        public Exemplar()
-        {
-            this.emprestimos = new List<Emprestimo>();
-        }
         #endregion
 
         #region PROPRIEDADES
@@ -45,28 +33,75 @@ namespace BibliotecaLivro
         }
         #endregion
 
-        #region METODOS
+        #region CONSTRUTORES
+        //CONSTRUTORES
+        public Exemplar(Int32 tombo, Int32 isbn)
+        {
+            this.setIsbn(isbn);
+            this.tombo = tombo;
+        }
+        public Exemplar(Int32 tombo)
+        {
+            this.tombo = tombo;
+        }
+        public Exemplar()
+        {
+            this.emprestimos = new List<Emprestimo>();
+        }
+        #endregion
+
+        #region SOBREESCRITAS
+        public override bool Equals(object obj)
+        {
+            Exemplar p = (Exemplar)obj;
+            return this.tombo.Equals(p.tombo);
+        }
+        #endregion
+
+        #region METODOS FUNCIONAIS
         //METODOS
-        public string dadosExemplar()
+        public string dados()
         {
             return "Tombo : " + this.tombo.ToString();
         }
-        public Boolean emprestar(Emprestimo dtEmprestimo)
+        public Boolean emprestar(Emprestimo emprestimo)
         {
+            Emprestimo empt = new Emprestimo();
             Boolean emprestado = false;
 
-            emprestimos.Add(dtEmprestimo);
+            if (empt.getDtEmprestimo() > Convert.ToDateTime("01/01/0001 01:01"))
+            {
+                emprestado = false;
+            }
+            else
+            {
+                emprestimos.Add(emprestimo);
+                emprestado = true;
+            }
 
             emprestado = true;
 
             return emprestado;
         }//emprestar
-        public Boolean devolver(Emprestimo dtdevolucao)
+        public Boolean devolver(Emprestimo emprestimo)
         {
+            //OBJETOS
+            Emprestimo empt = new Emprestimo();
+
+            //Variaveis
             Boolean devolvido = false;
-
-            emprestimos.Add(dtdevolucao);
-
+            
+            /*
+            if(empt.getDtEmprestimo() > Convert.ToDateTime(0))
+            {
+                empt.setDtDevolucao(new Emprestimo("0","0",0,0));
+                devolvido = true;
+            }
+            else
+            {
+                devolvido = false;
+            }
+            */
             devolvido = true;
 
             return devolvido;

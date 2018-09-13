@@ -6,28 +6,11 @@ using System.Threading.Tasks;
 
 namespace BibliotecaLivro
 {
-    class Emprestimo
+    class Emprestimo : Exemplar
     {
         #region ATRIBUTOS
         private DateTime dtEmprestimo;
         private DateTime dtDevolucao;
-        #endregion
-
-        #region CONSTRUTORES
-        public Emprestimo(String dtEmprestimo, String dtDevolucao)
-        {
-            this.dtEmprestimo = DateTime.Parse(dtEmprestimo);
-            this.dtDevolucao = DateTime.Parse(dtDevolucao);
-        }
-        public Emprestimo(String dtEmprestimo)
-        {
-            this.dtEmprestimo = DateTime.Parse(dtEmprestimo);
-        }
-        public Emprestimo()
-        {
-            this.dtEmprestimo = DateTime.Parse("01/03/2000 01:00");
-            this.dtDevolucao = DateTime.Parse("01/03/2000 01:00");
-        }
         #endregion
 
         #region PROPRIEDADES
@@ -51,11 +34,41 @@ namespace BibliotecaLivro
         }
         #endregion
 
-        #region METODOS
+        #region CONSTRUTORES
+        public Emprestimo(DateTime dtEmprestimo, DateTime dtDevolucao, Int32 isbn, Int32 tombo)
+        {
+            this.dtEmprestimo = dtEmprestimo;
+            this.dtDevolucao = dtDevolucao;
+            this.setIsbn(isbn);
+            this.setTombo(tombo);
+        }
+        public Emprestimo(DateTime dtEmprestimo, Int32 isbn, Int32 tombo)
+        {
+            this.dtEmprestimo = dtEmprestimo;
+            this.setIsbn(isbn);
+            this.setTombo(tombo);
+        }
+        public Emprestimo(DateTime dtEmprestimo)
+        {
+            this.dtEmprestimo = dtEmprestimo;
+        }
+        public Emprestimo()
+        {
+        }
+        #endregion
+
+        #region SOBREESCRITAS
         public override bool Equals(object obj)
         {
             Emprestimo p = (Emprestimo)obj;
             return this.dtEmprestimo.Equals(p.dtEmprestimo);
+        }
+        #endregion
+
+        #region METODOS FUNCIONAIS
+        public string dados()
+        {
+            return "ISBN: " + this.getIsbn() + " - tombo: "+ this.getTombo() + " - data do empréstimo: " + this.dtEmprestimo.ToString() + " - data da devolução: " + this.dtDevolucao.ToString();
         }
         #endregion
     }

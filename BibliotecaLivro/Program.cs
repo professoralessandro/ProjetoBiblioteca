@@ -10,107 +10,138 @@ namespace BibliotecaLivro
     {
         static void Main(string[] args)
         {
-            Console.Clear();
             inicializar();
-        }
+        }//Main
         static void inicializar()
         {
-            Console.Clear();
-            Console.WriteLine("=======================================================================");
+            #region INSTANCIAS DOS OBJETOS
+            Livros livros = new Livros();
+            Livro livro = new Livro();
+            Exemplar exemplar = new Exemplar();
+            #endregion
+            Console.WriteLine("=======================================");
             Console.WriteLine("0. Sair");
             Console.WriteLine("1. Adicionar Livro");
-            Console.WriteLine("2. Pesquisar livro (sinético)");
-            Console.WriteLine("3. Pesquisar livro (analitico)");
+            Console.WriteLine("2. Pesquisar Livro (sintético)*");
+            Console.WriteLine("3. Pesquisar Livro (analítico)**");
             Console.WriteLine("4. Adicionar exemplar");
             Console.WriteLine("5. Registrar empréstimo");
             Console.WriteLine("6. Registrar devolução");
-            Console.WriteLine("=======================================================================");
-            
+            Console.WriteLine("=======================================");
+            String opc = Console.ReadLine();
 
-            Int32 opc = Convert.ToInt32(Console.ReadLine());
-            
-            Livros lvs = new Livros();
-            Livro lv = new Livro();
+            Console.Clear();
 
-            if (opc == 0)
+            #region OPCAO 0
+            if (opc == "0")
             {
                 Console.Out.Close();
             }
-            else if(opc == 1)
+            #endregion
+            #region OPCAO 1
+            else if (opc == "1")
             {
-                Console.Clear();
-                //Int32 tombo = 0;
-                Int32 isbn = 0;
-                String titulo = "";
-                String autor = "";
-                String editora = "";
+                //Variaveis
+                Int32 isbn;
+                String titulo;
+                String autor;
+                String editora;
 
-                Console.WriteLine("Informe qual é o isbn");
+                //Entrada
+                Console.WriteLine("Informe qual é o ISBN do livro");
                 isbn = Convert.ToInt32(Console.ReadLine());
 
-                Console.WriteLine("Informe qual é o titulo");
+                Console.WriteLine("Informe qual é o título do livro");
                 titulo = Console.ReadLine();
 
-                Console.WriteLine("Informe qual é o autor");
+                Console.WriteLine("Informe qual é o autor do livro");
                 autor = Console.ReadLine();
 
-                Console.WriteLine("Informe qual é a editora");
+                Console.WriteLine("Informe qual é a editora do livro");
                 editora = Console.ReadLine();
 
-                lvs.adicionar(new Livro(isbn, titulo, autor, editora));
+                livros.adicionar(new Livro(isbn, titulo, autor, editora));
 
+                Console.WriteLine("Livro adicionado com sucesso!");
                 Console.Clear();
-                inicializar();
-            }//ELSE IF 1
-            else if (opc == 2)
-            {
-                Console.Clear();
-
-                Console.WriteLine(lvs.pesquisar());
-
-                Console.WriteLine();
-
-                Console.ReadKey();
                 inicializar();
             }
-            else if (opc == 3)
+            #endregion
+            else if (opc == "2")
             {
+
+            }
+            else if (opc == "3")
+            {
+
+            }
+            else if (opc == "4")
+            {
+                //variaveis
+                Int32 tombo;
+                Int32 isbn;
+
+                //ENTRADA
+                Console.WriteLine("Informe qual é o Tombo do exemplar");
+                tombo = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("Informe qual é o ISBN do livro");
+                isbn = Convert.ToInt32(Console.ReadLine());
+                //PROCESAMENTO
+                livro.adicionarExemplar(new Exemplar(tombo, isbn));
+
+                Console.WriteLine("Exemplar de livro adicionado com sucesso!");
                 Console.Clear();
-                Int32 isbn = 0;
+                inicializar();
+            }
+            else if (opc == "5")
+            {
+                DateTime data;
+                Int32 isbn;
+                Int32 tombo;
+
+                Console.WriteLine("Informe qual é o ISBN do livro");
+                data = Convert.ToDateTime(Console.ReadLine());
 
                 Console.WriteLine("Informe qual é o ISBN do livro");
                 isbn = Convert.ToInt32(Console.ReadLine());
 
-                Console.WriteLine(lvs.pesquisar(isbn));
+                Console.WriteLine("Informe qual é o Tombo do exemplar");
+                tombo = Convert.ToInt32(Console.ReadLine());
 
-                Console.WriteLine();
+                exemplar.emprestar(new Emprestimo(data, isbn, tombo));
 
-                Console.ReadKey();
-                inicializar();
-            }//else if 3
-            else if (opc == 4)
-            {
+
+                Console.WriteLine("Exemplar de livro adicionado com sucesso!");
                 Console.Clear();
-                Int32 tombo = 0;
-                //Int32 isbn = 0;
-                //String titulo = "";
-                //String autor = "";
-                //String editora = "";
+                inicializar();
+            }
+            else if (opc == "6")
+            {
+                DateTime dataEmprestimo;
+                DateTime dataDevolucao;
+                Int32 isbn;
+                Int32 tombo;
+
+                Console.WriteLine("Informe qual é a data de emprestimo do livro");
+                dataEmprestimo = Convert.ToDateTime(Console.ReadLine());
+
+                Console.WriteLine("Informe qual é a data de devolucao do livro");
+                dataDevolucao = Convert.ToDateTime(Console.ReadLine());
+
+                Console.WriteLine("Informe qual é o ISBN do livro");
+                isbn = Convert.ToInt32(Console.ReadLine());
 
                 Console.WriteLine("Informe qual é o Tombo do exemplar");
                 tombo = Convert.ToInt32(Console.ReadLine());
 
-                lv.adicionarExemplar(new Exemplar(tombo));
+                exemplar.emprestar(new Emprestimo(dataEmprestimo, dataDevolucao, isbn, tombo));
 
+
+                Console.WriteLine("Exemplar de livro adicionado com sucesso!");
                 Console.Clear();
                 inicializar();
             }
-            else if (opc == 5)
-            {
-                Console.WriteLine("Informe qual é o Tombo do exemplar");
-            }
-            Console.ReadKey();
-            Console.Clear();
-        }
-    }
-}
+        }//inicializar
+    }//Class
+}//namespace
