@@ -83,18 +83,28 @@ namespace BibliotecaLivro
 
             return emprestado;
         }//emprestar
-        public Boolean devolver(Emprestimo emprestimo)
+        public Boolean devolver()
         {
             //OBJETOS
             Emprestimo empt = new Emprestimo();
 
             //Variaveis
             Boolean devolvido = false;
-            
-            /*
-            if(empt.getDtEmprestimo() > Convert.ToDateTime(0))
+            DateTime dataEmprestimo = System.DateTime.Now;
+            DateTime dataDevolucao = System.DateTime.Now;
+            Int32 isbn;
+            Int32 tombo;
+
+            Console.WriteLine("Informe qual é o ISBN do livro");
+            isbn = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Informe qual é o Tombo do exemplar");
+            tombo = Convert.ToInt32(Console.ReadLine());
+
+            if (empt.getDtEmprestimo() > Convert.ToDateTime(0))
             {
-                empt.setDtDevolucao(new Emprestimo("0","0",0,0));
+                emprestimos.Add(new Emprestimo(dataEmprestimo,dataDevolucao,isbn,tombo));
+
                 devolvido = true;
             }
             else

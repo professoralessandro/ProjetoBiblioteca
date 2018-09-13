@@ -96,12 +96,9 @@ namespace BibliotecaLivro
             }
             else if (opc == "5")
             {
-                DateTime data;
+                DateTime data = System.DateTime.Now;
                 Int32 isbn;
                 Int32 tombo;
-
-                Console.WriteLine("Informe qual é o ISBN do livro");
-                data = Convert.ToDateTime(Console.ReadLine());
 
                 Console.WriteLine("Informe qual é o ISBN do livro");
                 isbn = Convert.ToInt32(Console.ReadLine());
@@ -113,21 +110,16 @@ namespace BibliotecaLivro
 
 
                 Console.WriteLine("Exemplar de livro adicionado com sucesso!");
+                Console.ReadKey();
                 Console.Clear();
                 inicializar();
             }
             else if (opc == "6")
             {
-                DateTime dataEmprestimo;
-                DateTime dataDevolucao;
+                DateTime dataEmprestimo = System.DateTime.Now;
+                DateTime dataDevolucao = System.DateTime.Now;
                 Int32 isbn;
                 Int32 tombo;
-
-                Console.WriteLine("Informe qual é a data de emprestimo do livro");
-                dataEmprestimo = Convert.ToDateTime(Console.ReadLine());
-
-                Console.WriteLine("Informe qual é a data de devolucao do livro");
-                dataDevolucao = Convert.ToDateTime(Console.ReadLine());
 
                 Console.WriteLine("Informe qual é o ISBN do livro");
                 isbn = Convert.ToInt32(Console.ReadLine());
@@ -135,10 +127,18 @@ namespace BibliotecaLivro
                 Console.WriteLine("Informe qual é o Tombo do exemplar");
                 tombo = Convert.ToInt32(Console.ReadLine());
 
-                exemplar.emprestar(new Emprestimo(dataEmprestimo, dataDevolucao, isbn, tombo));
+                exemplar.devolver();
 
+                if(exemplar.devolver() == true)
+                {
+                    Console.WriteLine("Exemplar de livro foi devolvido com sucesso!");
+                }
+                else
+                {
+                    Console.WriteLine("Erro ao devolver o exemplar!");
+                }
 
-                Console.WriteLine("Exemplar de livro adicionado com sucesso!");
+                Console.ReadKey();
                 Console.Clear();
                 inicializar();
             }
