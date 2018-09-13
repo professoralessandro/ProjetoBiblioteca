@@ -64,23 +64,33 @@ namespace BibliotecaLivro
         {
             return "Tombo : " + this.tombo.ToString();
         }
-        public Boolean emprestar(Emprestimo emprestimo)
+        public Boolean emprestar()
         {
             Emprestimo empt = new Emprestimo();
+            DateTime dataEmprestimo = System.DateTime.Now;
+            Int32 isbn;
+            Int32 tombo;
             Boolean emprestado = false;
 
+            Console.WriteLine("Informe qual é o ISBN do livro");
+            isbn = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Informe qual é o Tombo do exemplar");
+            tombo = Convert.ToInt32(Console.ReadLine());
+            /*
             if (empt.getDtEmprestimo() > Convert.ToDateTime("01/01/0001 01:01"))
             {
                 emprestado = false;
             }
             else
-            {
-                emprestimos.Add(emprestimo);
+            {*/
+                emprestimos.Add(new Emprestimo(dataEmprestimo, dataEmprestimo, isbn, tombo));
                 emprestado = true;
+            /*
             }
 
             emprestado = true;
-
+            */
             return emprestado;
         }//emprestar
         public Boolean devolver()
@@ -90,7 +100,6 @@ namespace BibliotecaLivro
 
             //Variaveis
             Boolean devolvido = false;
-            DateTime dataEmprestimo = System.DateTime.Now;
             DateTime dataDevolucao = System.DateTime.Now;
             Int32 isbn;
             Int32 tombo;
@@ -100,20 +109,20 @@ namespace BibliotecaLivro
 
             Console.WriteLine("Informe qual é o Tombo do exemplar");
             tombo = Convert.ToInt32(Console.ReadLine());
-
+            /*
             if (empt.getDtEmprestimo() > Convert.ToDateTime(0))
-            {
-                emprestimos.Add(new Emprestimo(dataEmprestimo,dataDevolucao,isbn,tombo));
+            {*/
+                emprestimos.Add(new Emprestimo(dataDevolucao, isbn, tombo));
 
                 devolvido = true;
+            /*
             }
             else
             {
                 devolvido = false;
             }
-            */
             devolvido = true;
-
+            */
             return devolvido;
         }//devolver
         public Boolean disponivel(Exemplar exemplar)

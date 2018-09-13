@@ -106,10 +106,18 @@ namespace BibliotecaLivro
                 Console.WriteLine("Informe qual é o Tombo do exemplar");
                 tombo = Convert.ToInt32(Console.ReadLine());
 
-                exemplar.emprestar(new Emprestimo(data, isbn, tombo));
+                exemplar.emprestar();
 
+                if(exemplar.emprestar() == true)
+                {
+                    Console.WriteLine("Exemplar de livro emprestado com sucesso!");
+                }
+                else
+                {
+                    Console.WriteLine("Erro emprestar o exemplar!");
+                }
 
-                Console.WriteLine("Exemplar de livro adicionado com sucesso!");
+                
                 Console.ReadKey();
                 Console.Clear();
                 inicializar();

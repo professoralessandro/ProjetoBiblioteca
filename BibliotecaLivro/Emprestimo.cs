@@ -23,9 +23,9 @@ namespace BibliotecaLivro
         {
             return this.dtEmprestimo;
         }
-        public void setDtDevolucao(String dtDevolucao)
+        public void setDtDevolucao(DateTime dtDevolucao)
         {
-            this.dtEmprestimo = DateTime.Parse(dtDevolucao);
+            this.dtEmprestimo = dtDevolucao;
         }
 
         public DateTime getDtDevolucao()
@@ -35,6 +35,7 @@ namespace BibliotecaLivro
         #endregion
 
         #region CONSTRUTORES
+        //construtores
         public Emprestimo(DateTime dtEmprestimo, DateTime dtDevolucao, Int32 isbn, Int32 tombo)
         {
             this.dtEmprestimo = dtEmprestimo;
@@ -42,9 +43,9 @@ namespace BibliotecaLivro
             this.setIsbn(isbn);
             this.setTombo(tombo);
         }
-        public Emprestimo(DateTime dtEmprestimo, Int32 isbn, Int32 tombo)
+        public Emprestimo(DateTime dtDevolucao, Int32 isbn, Int32 tombo)
         {
-            this.dtEmprestimo = dtEmprestimo;
+            this.dtDevolucao = dtDevolucao;
             this.setIsbn(isbn);
             this.setTombo(tombo);
         }
