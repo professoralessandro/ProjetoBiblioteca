@@ -8,8 +8,6 @@ namespace BibliotecaLivro
 {
     class Livro
     {
-        Livros empres = new Livros();
-
         #region ATRIBUTOS
 
         //ATRIBUTOS

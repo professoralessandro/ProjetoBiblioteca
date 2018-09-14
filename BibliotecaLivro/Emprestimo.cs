@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BibliotecaLivro
 {
-    class Emprestimo : Exemplar
+    class Emprestimo
     {
         #region ATRIBUTOS
         private DateTime dtEmprestimo;
@@ -40,14 +40,10 @@ namespace BibliotecaLivro
         {
             this.dtEmprestimo = dtEmprestimo;
             this.dtDevolucao = dtDevolucao;
-            this.setIsbn(isbn);
-            this.setTombo(tombo);
         }
         public Emprestimo(DateTime dtDevolucao, Int32 isbn, Int32 tombo)
         {
             this.dtDevolucao = dtDevolucao;
-            this.setIsbn(isbn);
-            this.setTombo(tombo);
         }
         public Emprestimo(DateTime dtEmprestimo)
         {
@@ -69,7 +65,7 @@ namespace BibliotecaLivro
         #region METODOS FUNCIONAIS
         public string dados()
         {
-            return "ISBN: " + this.getIsbn() + " - tombo: "+ this.getTombo() + " - data do empréstimo: " + this.dtEmprestimo.ToString() + " - data da devolução: " + this.dtDevolucao.ToString();
+            return " - data do empréstimo: " + this.dtEmprestimo.ToString() + " - data da devolução: " + this.dtDevolucao.ToString();
         }
         #endregion
     }

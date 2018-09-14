@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BibliotecaLivro
 {
-    class Exemplar : Livro
+    class Exemplar
     {
         #region ATRIBUTOS
         //Atributos
@@ -37,7 +37,6 @@ namespace BibliotecaLivro
         //CONSTRUTORES
         public Exemplar(Int32 tombo, Int32 isbn)
         {
-            this.setIsbn(isbn);
             this.tombo = tombo;
         }
         public Exemplar(Int32 tombo)

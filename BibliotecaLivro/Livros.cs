@@ -13,9 +13,9 @@ namespace BibliotecaLivro
         #endregion
 
         #region PROPRIEDADES
-        public List<Livro> getAcervo()
+        public List<Livro> Acervo
         {
-            return this.acervo;
+            get { return acervo; }
         }
         #endregion
 
@@ -36,13 +36,18 @@ namespace BibliotecaLivro
         #endregion
 
         #region METODOS
+        public string dados()
+        {
+            return "Isbn: " + this.acervo;
+        }
+
         public void adicionar(Livro livro)
         {
             this.acervo.Add(livro);
         }//adicionarExemplar
         public Livro pesquisar(Int32 num)
         {
-            foreach (Livro livrinho in getAcervo())
+            foreach (Livro livrinho in acervo)
             {
                 //if(ListaCont.MinhaLista.Equals(new Contato(Convert.ToInt32(textId.Text))));
                 if (livrinho.Equals(new Livro(num)))
@@ -53,17 +58,16 @@ namespace BibliotecaLivro
             }
             return new Livro();
         }//adicionarExemplar
-        public String pesquisar()
+        public Livro pesquisar()
         {
             String vazio = "Este livro nao existe";
             String result = "";
 
-            foreach (Livro livrinho in getAcervo())
+            foreach (Livro livrinho in acervo)
             {
-                result = livrinho.dados();
-                return result;
+                return livrinho;
             }
-            return vazio;
+            return new Livro();
         }//adicionarExemplar
 
         #endregion
